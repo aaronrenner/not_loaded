@@ -42,7 +42,7 @@ defmodule NotLoaded.Mixfile do
   end
 
   defp description do
-    "Helpers for working with data that hasn't been loaded. Inspired by Ecto"
+    "Placeholders for data that isn't loaded. Inspired by Ecto."
   end
 
   defp package do
