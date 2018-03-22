@@ -10,14 +10,14 @@ defmodule NotLoaded.Mixfile do
       app: :not_loaded,
       version: @version,
       elixir: "~> 1.5",
-      start_permanent: Mix.env == :prod,
+      start_permanent: Mix.env() == :prod,
       description: description(),
       package: package(),
       deps: deps(),
 
       # Docs
       name: "NotLoaded",
-      docs: docs(),
+      docs: docs()
     ]
   end
 
@@ -29,7 +29,7 @@ defmodule NotLoaded.Mixfile do
     [
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 0.5", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.16", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.16", only: :dev, runtime: false}
     ]
   end
 
@@ -37,7 +37,7 @@ defmodule NotLoaded.Mixfile do
   defp docs do
     [
       source_url: @source_url,
-      source_rev: "v#{@version}",
+      source_rev: "v#{@version}"
     ]
   end
 
@@ -51,7 +51,7 @@ defmodule NotLoaded.Mixfile do
       licenses: ["MIT"],
       links: %{
         "Github" => @source_url
-      },
+      }
     ]
   end
 end

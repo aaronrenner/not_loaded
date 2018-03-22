@@ -18,13 +18,13 @@ defmodule NotLoaded do
   @type field_name :: atom
 
   @opaque t :: %__MODULE__{
-    __field__: field_name
-  }
+            __field__: field_name
+          }
 
   defimpl Inspect do
     def inspect(not_loaded, _opts) do
-      msg = "field #{inspect not_loaded.__field__} is not loaded"
-      "##{inspect @for}<#{msg}>"
+      msg = "field #{inspect(not_loaded.__field__)} is not loaded"
+      "##{inspect(@for)}<#{msg}>"
     end
   end
 
@@ -41,8 +41,7 @@ defmodule NotLoaded do
   """
   defmacro lazy_loaded(field_name) when is_atom(field_name) do
     quote do
-      {unquote(field_name),
-       unquote(__MODULE__).new(unquote(field_name))}
+      {unquote(field_name), unquote(__MODULE__).new(unquote(field_name))}
     end
   end
 end
