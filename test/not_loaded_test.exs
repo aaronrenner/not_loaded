@@ -15,4 +15,8 @@ defmodule NotLoadedTest do
 
     assert "#NotLoaded<field :author is not loaded>" = inspect(book.author)
   end
+
+  test "new/1 creates a new not_loaded struct" do
+    assert %NotLoaded{__field__: :password} = NotLoaded.new(:password)
+  end
 end
