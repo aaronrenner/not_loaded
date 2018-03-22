@@ -1,4 +1,4 @@
-## Unreleased
+## 0.2.0 (2018-03-22)
 
 ### Features
 * `NotLoaded.new/1` for defining a NotLoaded value at runtime.
