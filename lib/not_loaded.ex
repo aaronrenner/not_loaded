@@ -17,9 +17,9 @@ defmodule NotLoaded do
 
   @type field_name :: atom
 
-  @opaque t :: %__MODULE__{
-            __field__: field_name
-          }
+  @type t :: %__MODULE__{
+          __field__: field_name
+        }
 
   defimpl Inspect do
     def inspect(not_loaded, _opts) do
