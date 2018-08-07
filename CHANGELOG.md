@@ -1,3 +1,9 @@
+## 0.2.1 (2018-08-07)
+
+### Features
+* `NotLoded.t` is no longer opaque
+* Test against Elixir 1.7.2 and OTP 21.0.4
+
 ## 0.2.0 (2018-03-22)
 
 ### Features
