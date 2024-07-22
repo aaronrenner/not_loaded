@@ -48,3 +48,57 @@ jobs:
       run: mix credo --strict
     - name: Clean before cache
       run: mix clean
+
+  dialyzer:
+    name: Dialyzer
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Elixir
+      id: beam
+      uses: erlef/setup-beam@v1.18
+      with:
+        elixir-version: '1.16'
+        otp-version: '26'
+    - name: Restore dependencies cache
+      uses: actions/cache@v4
+      id: deps-cache
+      with:
+        path: deps
+        key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-mix-
+    - name: Restore compiled dependencies cache
+      uses: actions/cache@v4
+      id: compiled-deps-cache
+      with:
+        path: _build/${{ env.MIX_ENV || 'dev'}}/lib
+        key: ${{ runner.os }}-${{ steps.beam.outputs.elixir-version }}-${{ steps.beam.outputs.otp-version }}-compiled-deps-cache-${{ env.MIX_ENV || 'dev' }}-${{ hashFiles('**/mix.lock','config/*.exs', 'mix.exs') }}
+    - name: Install dependencies
+      if: steps.deps-cache.outputs.cache-hit != 'true'
+      run: mix deps.get
+    - name: Restore core plt cache
+      uses: actions/cache@v4
+      id: core-plt-cache
+      with:
+        path: .dialyzer/core
+        key:
+          ${{ runner.os }}-${{ steps.beam.outputs.elixir-version }}-${{ steps.beam.outputs.otp-version }}-plt-core-v1
+    - name: Restore local plt cache
+      uses: actions/cache@v4
+      id: local-plt-cache
+      with:
+        path: .dialyzer/local
+        key:
+          ${{ runner.os }}-${{ steps.beam.outputs.elixir-version }}-${{ steps.beam.outputs.otp-version }}-plt-local-v1-${{ hashFiles('**/mix.lock')}}
+    - name: Compile PLT
+      if: steps.local-plt-cache.outputs.cache-hit != 'true'
+      run: |
+        mkdir -p .dialyzer/core
+        mkdir -p .dialyzer/local
+        mix dialyzer --plt
+    - name: Run dialyzer
+      run: mix dialyzer --format github
+    - name: Clean before cache
+      run: mix clean

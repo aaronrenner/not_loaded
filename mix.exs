@@ -17,7 +17,8 @@ defmodule NotLoaded.Mixfile do
 
       # Docs
       name: "NotLoaded",
-      docs: docs()
+      docs: docs(),
+      dialyzer: dialyzer(System.get_env())
     ]
   end
 
@@ -54,4 +55,15 @@ defmodule NotLoaded.Mixfile do
       }
     ]
   end
+
+  #
+  # Environment specific dialyzer config
+  defp dialyzer(%{"CI" => "true"}) do
+    [
+      plt_core_path: ".dialyzer/core",
+      plt_local_path: ".dialyzer/local"
+    ]
+  end
+
+  defp dialyzer(_), do: []
 end
