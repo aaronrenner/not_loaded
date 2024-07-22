@@ -1,3 +1,8 @@
+## Unreleased
+
+### Breaking changes
+* Require Elixir 1.15
+
 ## 0.2.1 (2018-08-07)
 
 ### Features
