@@ -1,7 +1,7 @@
 defmodule NotLoaded.Mixfile do
   use Mix.Project
 
-  @version "0.2.1"
+  @version "0.3.0"
   @maintainers ["Aaron Renner"]
   @source_url "https://github.com/aaronrenner/not_loaded"
 

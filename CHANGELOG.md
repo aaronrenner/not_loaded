@@ -1,4 +1,4 @@
-## Unreleased
+## 0.3.0 (2024-07-24)
 
 ### Breaking changes
 * Require Elixir 1.15
