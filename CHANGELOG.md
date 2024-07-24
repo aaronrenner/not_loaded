@@ -2,6 +2,8 @@
 
 ### Breaking changes
 * Require Elixir 1.15
+* Add `NotLoaded.defmodule/1` to allow for module to be built in custom
+  namespaces
 
 ## 0.2.1 (2018-08-07)
 

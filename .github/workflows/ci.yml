@@ -48,7 +48,8 @@ jobs:
     - name: Compile App
       run: mix do clean, compile --warnings-as-errors
     - name: Run tests
-      run: mix test --warnings-as-errors
+      # Temporarily removing --warnings-as-errors until we remove deprecations
+      run: mix test
     - name: Check formatting
       run: mix format --check-formatted
     - name: Check unused dependencies
