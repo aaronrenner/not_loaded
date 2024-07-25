@@ -11,7 +11,6 @@ defmodule NotLoaded.Mixfile do
       version: @version,
       elixir: "~> 1.15",
       elixirc_paths: elixirc_paths(Mix.env()),
-      start_permanent: Mix.env() == :prod,
       description: description(),
       package: package(),
       deps: deps(),
